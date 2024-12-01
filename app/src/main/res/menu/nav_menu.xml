@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/icono_inicio"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/nav_datos"
+            android:icon="@drawable/icono_datos"
+            android:title="Datos" />
+        <item
+            android:id="@+id/nav_consejos"
+            android:icon="@drawable/icono_consejos"
+            android:title="Consejos" />
+        <item android:title="">
+            <menu>
+                <item
+                    android:id="@+id/nav_salir"
+                    android:icon="@drawable/icono_salir"
+                    android:title="Salir" />
+            </menu>
+        </item>
+    </group>
+</menu>
