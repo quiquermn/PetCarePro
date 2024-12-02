@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondologin"
+    android:background="@drawable/fondoregister"
     tools:context=".RegisterActivity">
 
     <LinearLayout
@@ -27,6 +27,17 @@
             android:layout_height="128dp"
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/icono" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Estás a punto de registrarte en PetCare+"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/inputNombreRegister"
@@ -55,7 +66,7 @@
 
         <Button
             android:id="@+id/buttonRegistrarse"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:backgroundTint="#9A8BCF"
@@ -66,7 +77,7 @@
 
         <Button
             android:id="@+id/buttonRegresar"
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:backgroundTint="#C6C6C6"

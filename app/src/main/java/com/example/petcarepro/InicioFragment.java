@@ -1,14 +1,17 @@
 package com.example.petcarepro;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.petcarepro.db.DatabaseAdmin;
@@ -28,12 +31,31 @@ public class InicioFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView textBienvenida = getActivity().findViewById(R.id.textBienvenida);
+
+        FragmentActivity activity = getActivity();
+
+        if (activity == null) {
+            return;
+        }
+
+        Button addMascotaButton = activity.findViewById(R.id.addMascotaButton);
+
+        addMascotaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(activity, AgregarMascotaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TextView textBienvenida = activity.findViewById(R.id.textBienvenida);
 
         DatabaseAdmin databaseAdmin = new DatabaseAdmin(getActivity());
         Usuarios usuarios = new Usuarios(databaseAdmin);
         Usuario usuario = usuarios.getCurUser();
         databaseAdmin.close();
         textBienvenida.setText(String.format("Hola, %s, empecemos a cuidar juntos de tus mascotitas…", usuario.getNombre()));
+
+
     }
 }
