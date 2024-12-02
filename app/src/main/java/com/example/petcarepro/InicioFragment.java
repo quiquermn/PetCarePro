@@ -50,7 +50,7 @@ public class InicioFragment extends Fragment {
 
         TextView textBienvenida = activity.findViewById(R.id.textBienvenida);
 
-        DatabaseAdmin databaseAdmin = new DatabaseAdmin(getActivity());
+        DatabaseAdmin databaseAdmin = new DatabaseAdmin(activity);
         Usuarios usuarios = new Usuarios(databaseAdmin);
         Usuario usuario = usuarios.getCurUser();
         databaseAdmin.close();

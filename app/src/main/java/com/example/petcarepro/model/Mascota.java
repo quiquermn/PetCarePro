@@ -10,6 +10,14 @@ public class Mascota {
 
     private int id;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Mascota(String nombre, String especie, String raza, String fechaNacimiento, int idUsuario) {
         this.nombre = nombre;
         this.especie = especie;

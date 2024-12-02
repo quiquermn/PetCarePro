@@ -21,6 +21,10 @@ import com.example.petcarepro.model.Usuario;
 import java.util.Date;
 
 public class AgregarMascotaActivity extends AppCompatActivity {
+    private EditText nombreMascotaInput;
+    private EditText especieMascotaInput;
+    private EditText razaMascotaInput;
+    private EditText fechaNacimientoMascotaInput;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +40,14 @@ public class AgregarMascotaActivity extends AppCompatActivity {
         Button regresarButton = findViewById(R.id.buttonRegresar);
         Button agregarMascotaButton = findViewById(R.id.buttonAgregarMascota);
 
+        nombreMascotaInput = findViewById(R.id.inputNombreMascota);
+        especieMascotaInput = findViewById(R.id.inputEspecie);
+        razaMascotaInput = findViewById(R.id.inputRaza);
+        fechaNacimientoMascotaInput = findViewById(R.id.inputFechaNacimiento);
+
         agregarMascotaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText nombreMascotaInput = findViewById(R.id.inputNombreMascota);
-                EditText especieMascotaInput = findViewById(R.id.inputEspecie);
-                EditText razaMascotaInput = findViewById(R.id.inputRaza);
-                EditText fechaNacimientoMascotaInput = findViewById(R.id.inputFechaNacimiento);
-
                 String nombreMascota = nombreMascotaInput.getText().toString().trim();
                 String especieMascota = especieMascotaInput.getText().toString().trim();
                 String razaMascota = razaMascotaInput.getText().toString().trim();
@@ -91,10 +95,9 @@ public class AgregarMascotaActivity extends AppCompatActivity {
 
                 databaseAdmin.close();
 
-
-//                Date fechaNacimiento = new Date(Date.parse(fechaNacimientoMascota));
+                limpiar();
                 Toast.makeText(AgregarMascotaActivity.this, "Mascota agregada.", Toast.LENGTH_SHORT).show();
-
+                finish();
             }
         });
 
@@ -105,5 +108,12 @@ public class AgregarMascotaActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void limpiar() {
+        nombreMascotaInput.setText("");
+        especieMascotaInput.setText("");
+        razaMascotaInput.setText("");
+        fechaNacimientoMascotaInput.setText("");
     }
 }
