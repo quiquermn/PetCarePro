@@ -3,6 +3,7 @@ package com.example.petcarepro;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -15,6 +16,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.petcarepro.db.DatabaseAdmin;
+import com.example.petcarepro.db.Usuarios;
+import com.example.petcarepro.model.Usuario;
 import com.google.android.material.navigation.NavigationView;
 
 public class InicioActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +29,8 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
+
+    private TextView emailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +53,13 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
             getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer,
                     new InicioFragment()).commit();
         }
+
+        emailTextView = navigationView.getHeaderView(0).findViewById(R.id.navEmail);
+        DatabaseAdmin databaseAdmin = new DatabaseAdmin(this);
+        Usuarios usuarios = new Usuarios(databaseAdmin);
+        Usuario usuario = usuarios.getCurUser();
+        emailTextView.setText(usuario.getEmail());
+        databaseAdmin.close();
     }
 
     @Override
@@ -79,6 +92,13 @@ public class InicioActivity extends AppCompatActivity implements NavigationView.
 
             toolbar.setBackgroundColor(Color.parseColor("#dab4f6"));
             toolbar.setTitle("Consejos");
+        } else if (itemId == NAV_EXIT) {
+            DatabaseAdmin databaseAdmin = new DatabaseAdmin(this);
+            Usuarios usuarios = new Usuarios(databaseAdmin);
+            usuarios.logout();
+            databaseAdmin.close();
+
+            finish();
         }
 
         return true;

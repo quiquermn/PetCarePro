@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.petcarepro.db.DatabaseAdmin;
+import com.example.petcarepro.db.Usuarios;
+import com.example.petcarepro.model.Usuario;
+
 
 public class InicioFragment extends Fragment {
 
@@ -25,6 +29,11 @@ public class InicioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextView textBienvenida = getActivity().findViewById(R.id.textBienvenida);
-        textBienvenida.setText(String.format("Hola, %s, empecemos a cuidar juntos de tus mascotitas…", "[insertar nombre de la base de datos]"));
+
+        DatabaseAdmin databaseAdmin = new DatabaseAdmin(getActivity());
+        Usuarios usuarios = new Usuarios(databaseAdmin);
+        Usuario usuario = usuarios.getCurUser();
+        databaseAdmin.close();
+        textBienvenida.setText(String.format("Hola, %s, empecemos a cuidar juntos de tus mascotitas…", usuario.getNombre()));
     }
 }

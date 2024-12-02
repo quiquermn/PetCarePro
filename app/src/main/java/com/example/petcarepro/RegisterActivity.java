@@ -87,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(RegisterActivity.this, "Error al registrar usuario", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "Ya existe un usuario con ese correo electrónico", Toast.LENGTH_SHORT).show();
 
 
             }
