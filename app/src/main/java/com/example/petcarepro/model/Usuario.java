@@ -6,10 +6,27 @@ public class Usuario {
     private String email;
     private String password;
 
+    private int idUsuario;
+
     public Usuario(String nombre, String email, String password) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public Usuario(String nombre, String email, String password, int idUsuario) {
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
+        this.idUsuario = idUsuario;
     }
 
     public String getNombre() {

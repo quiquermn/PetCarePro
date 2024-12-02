@@ -8,12 +8,24 @@ public class Mascota {
 
     private int idUsuario;
 
+    private int id;
+
     public Mascota(String nombre, String especie, String raza, String fechaNacimiento, int idUsuario) {
         this.nombre = nombre;
         this.especie = especie;
         this.raza = raza;
         this.fechaNacimiento = fechaNacimiento;
         this.idUsuario = idUsuario;
+    }
+
+    public Mascota(Mascota mascota, int idMascota) {
+        this.nombre = mascota.getNombre();
+        this.especie = mascota.getEspecie();
+        this.raza = mascota.getRaza();
+        this.fechaNacimiento = mascota.getFechaNacimiento();
+        this.idUsuario = mascota.getIdUsuario();
+
+        this.id = idMascota;
     }
 
     public String getNombre() {

@@ -56,7 +56,7 @@ public class Usuarios {
         SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
         Cursor fila = sqLiteDatabase.rawQuery("SELECT * FROM Usuario WHERE id = (SELECT idUsuario FROM CurUser)", null);
         if (fila.moveToFirst()) {
-            return new Usuario(fila.getString(1), fila.getString(2), fila.getString(3));
+            return new Usuario(fila.getString(1), fila.getString(2), fila.getString(3), fila.getInt(0));
         }
         fila.close();
 

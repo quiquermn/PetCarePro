@@ -12,6 +12,14 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.petcarepro.db.DatabaseAdmin;
+import com.example.petcarepro.db.Mascotas;
+import com.example.petcarepro.db.Usuarios;
+import com.example.petcarepro.model.Mascota;
+import com.example.petcarepro.model.Usuario;
+
+import java.util.Date;
+
 public class AgregarMascotaActivity extends AppCompatActivity {
 
     @Override
@@ -62,7 +70,30 @@ public class AgregarMascotaActivity extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(AgregarMascotaActivity.this, "Mascota agregada correctamente", Toast.LENGTH_SHORT).show();
+                String[] fechas = fechaNacimientoMascota.split("/");
+
+                if (fechas.length != 3) {
+                    Toast.makeText(AgregarMascotaActivity.this, "Fecha de nacimiento inválida", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (fechas[0].length() != 2 || fechas[1].length() != 2 || fechas[2].length() != 2) {
+                    Toast.makeText(AgregarMascotaActivity.this, "Se debe de cumplir el formato dd/mm/aa", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                DatabaseAdmin databaseAdmin = new DatabaseAdmin(AgregarMascotaActivity.this);
+                Usuarios usuarios = new Usuarios(databaseAdmin);
+                Usuario currentUsuario = usuarios.getCurUser();
+
+                Mascota mascota = new Mascota(nombreMascota, especieMascota, razaMascota, fechaNacimientoMascota, currentUsuario.getIdUsuario());
+                Mascotas mascotas = new Mascotas(databaseAdmin);
+                mascotas.insertarMascota(mascota);
+
+                databaseAdmin.close();
+
+
+//                Date fechaNacimiento = new Date(Date.parse(fechaNacimientoMascota));
+                Toast.makeText(AgregarMascotaActivity.this, "Mascota agregada.", Toast.LENGTH_SHORT).show();
 
             }
         });
