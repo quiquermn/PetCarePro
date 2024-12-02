@@ -13,6 +13,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.petcarepro.db.DatabaseAdmin;
+import com.example.petcarepro.db.Usuarios;
+import com.example.petcarepro.model.Usuario;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText inputEmail;
     private EditText inputPassword;
@@ -45,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "El email no puede estar vacío", Toast.LENGTH_SHORT).show();
                     return;
                 }
+
                 if (!email.contains("@")) {
                     Toast.makeText(LoginActivity.this, "Email inválido", Toast.LENGTH_SHORT).show();
                     return;
@@ -54,9 +59,26 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "La contraseña no puede estar vacía", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                DatabaseAdmin databaseAdmin = new DatabaseAdmin(LoginActivity.this);
+                Usuarios usuarios = new Usuarios(databaseAdmin);
+                Usuario usuario = usuarios.login(email, password);
 
+                databaseAdmin.close();
+
+                if (usuario == null) {
+                    Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Intent intent = new Intent(LoginActivity.this, InicioActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        registerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
