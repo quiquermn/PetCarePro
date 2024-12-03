@@ -1,5 +1,6 @@
 package com.example.petcarepro;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,8 @@ import androidx.fragment.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,7 +23,7 @@ import com.example.petcarepro.model.Mascota;
 import java.util.List;
 
 
-public class DatosFragment extends Fragment {
+public class DatosFragment extends Fragment implements AdapterView.OnItemClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,7 +34,16 @@ public class DatosFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        this.cargarDatos();
+    }
 
+    @Override
+    public void onResume() { // Después de que se elimina una mascota, se vuelve a cargar la lista
+        super.onResume();
+        cargarDatos();
+    }
+
+    private void cargarDatos() {
         FragmentActivity activity = getActivity();
 
         if (activity == null) {
@@ -42,11 +54,21 @@ public class DatosFragment extends Fragment {
         Mascotas mascotas = new Mascotas(databaseAdmin);
         List<Mascota> listaMascotas = mascotas.getMascotasFromCurUser();
 
-        TextView tituloDatos = activity.findViewById(R.id.tituloDatos);
+        databaseAdmin.close();
 
-        for (int i = 0; i < listaMascotas.size(); i++) {
-            Mascota mascota = listaMascotas.get(i);
-            tituloDatos.setText(tituloDatos.getText() + mascota.getNombre() + "-" + i + "\n");
-        }
+        ListView listView = getView().findViewById(R.id.mascotasListView);
+        ListMascotasAdaptador adaptador = new ListMascotasAdaptador(activity, listaMascotas);
+        listView.setAdapter(adaptador);
+
+        listView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Mascota mascota = (Mascota) parent.getItemAtPosition(position);
+        Intent intent = new Intent(getActivity(), DetalleMascotaActivity.class);
+
+        intent.putExtra("mascota", mascota); // Añade la mascota al intent
+        startActivity(intent);
     }
 }

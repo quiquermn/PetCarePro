@@ -1,6 +1,9 @@
 package com.example.petcarepro.model;
 
-public class Mascota {
+import java.io.Serializable;
+
+public class Mascota implements Serializable {
+    // Implementamos Serializable para poder pasar objetos de esta clase entre activities
     private String nombre;
     private String especie;
     private String raza;

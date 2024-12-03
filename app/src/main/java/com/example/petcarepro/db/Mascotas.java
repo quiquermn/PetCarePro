@@ -56,4 +56,27 @@ public class Mascotas {
 
         return lista;
     }
+
+    public boolean eliminarMascota(int idMascota) {
+        SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+        int eliminados = sqLiteDatabase.delete("Mascota", "id = " + idMascota, null);
+        return eliminados > 0;
+    }
+
+    public boolean editarMascota(Mascota mascota) {
+        if (mascota.getId() == 0) {
+            return false;
+        }
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nombre", mascota.getNombre());
+        contentValues.put("especie", mascota.getEspecie());
+        contentValues.put("raza", mascota.getRaza());
+        contentValues.put("fechaNacimiento", mascota.getFechaNacimiento());
+
+        SQLiteDatabase sqLiteDatabase = db.getWritableDatabase();
+        int actualizados = sqLiteDatabase.update("Mascota", contentValues, "id = " + mascota.getId(), null);
+
+        return actualizados > 0;
+    }
 }
