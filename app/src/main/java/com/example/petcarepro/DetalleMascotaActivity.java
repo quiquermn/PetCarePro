@@ -36,16 +36,6 @@ public class DetalleMascotaActivity extends AppCompatActivity {
             return;
         }
 
-        TextView nombreText = findViewById(R.id.nombreMascotaDetalles);
-        TextView especieText = findViewById(R.id.especieMascotaDetalles);
-        TextView razaText = findViewById(R.id.razaMascotaDetalles);
-        TextView fechaNacimientoText = findViewById(R.id.fechaNacimientoMascotaDetalles);
-
-        nombreText.setText(mascota.getNombre());
-        especieText.setText(mascota.getEspecie());
-        razaText.setText(mascota.getRaza());
-        fechaNacimientoText.setText(mascota.getFechaNacimiento());
-
         Button regresarButton = findViewById(R.id.buttonRegresar);
         regresarButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,13 +63,6 @@ public class DetalleMascotaActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        Button editarButton = findViewById(R.id.buttonEditar);
-        editarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(DetalleMascotaActivity.this, "Editar mascota", Toast.LENGTH_SHORT).show();
-            }
-        });
+//
     }
 }

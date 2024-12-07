@@ -22,8 +22,7 @@ import com.example.petcarepro.model.Usuario;
 public class InicioFragment extends Fragment {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_inicio, container, false);
     }
@@ -32,25 +31,19 @@ public class InicioFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        FragmentActivity activity = getActivity();
-
-        if (activity == null) {
-            return;
-        }
-
-        Button addMascotaButton = activity.findViewById(R.id.addMascotaButton);
+        Button addMascotaButton = view.findViewById(R.id.addMascotaButton);
 
         addMascotaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(activity, AgregarMascotaActivity.class);
+                Intent intent = new Intent(view.getContext(), AgregarMascotaActivity.class);
                 startActivity(intent);
             }
         });
 
-        TextView textBienvenida = activity.findViewById(R.id.textBienvenida);
+        TextView textBienvenida = view.findViewById(R.id.textBienvenida);
 
-        DatabaseAdmin databaseAdmin = new DatabaseAdmin(activity);
+        DatabaseAdmin databaseAdmin = new DatabaseAdmin(view.getContext());
         Usuarios usuarios = new Usuarios(databaseAdmin);
         Usuario usuario = usuarios.getCurUser();
         databaseAdmin.close();

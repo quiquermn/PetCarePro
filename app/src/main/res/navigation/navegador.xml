@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegador"
+    app:startDestination="@id/visualizarMascotaFragment">
+
+    <fragment
+        android:id="@+id/visualizarMascotaFragment"
+        android:name="com.example.petcarepro.VisualizarMascotaFragment"
+        android:label="fragment_visualizar_mascota"
+        tools:layout="@layout/fragment_visualizar_mascota">
+        <action
+            android:id="@+id/action_visualizarMascotaFragment_to_editarMascotaFragment"
+            app:destination="@id/editarMascotaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editarMascotaFragment"
+        android:name="com.example.petcarepro.EditarMascotaFragment"
+        android:label="fragment_editar_mascota"
+        tools:layout="@layout/fragment_editar_mascota">
+        <action
+            android:id="@+id/action_editarMascotaFragment_to_visualizarMascotaFragment"
+            app:destination="@id/visualizarMascotaFragment" />
+    </fragment>
+</navigation>

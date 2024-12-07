@@ -31,6 +31,7 @@ public class Mascota implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+
     public Mascota(Mascota mascota, int idMascota) {
         this.nombre = mascota.getNombre();
         this.especie = mascota.getEspecie();
