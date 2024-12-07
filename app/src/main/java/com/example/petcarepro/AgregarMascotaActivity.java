@@ -2,8 +2,10 @@ package com.example.petcarepro;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -18,13 +20,13 @@ import com.example.petcarepro.db.Usuarios;
 import com.example.petcarepro.model.Mascota;
 import com.example.petcarepro.model.Usuario;
 
-import java.util.Date;
-
 public class AgregarMascotaActivity extends AppCompatActivity {
     private EditText nombreMascotaInput;
-    private EditText especieMascotaInput;
+    private Spinner especieMascotaSpinner;
     private EditText razaMascotaInput;
     private EditText fechaNacimientoMascotaInput;
+
+    private String[] especies = {"Selecciona una especie", "Perro", "Gato"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +43,19 @@ public class AgregarMascotaActivity extends AppCompatActivity {
         Button agregarMascotaButton = findViewById(R.id.buttonAgregarMascota);
 
         nombreMascotaInput = findViewById(R.id.inputNombreMascota);
-        especieMascotaInput = findViewById(R.id.inputEspecie);
+        especieMascotaSpinner = findViewById(R.id.spinnerEspecie);
         razaMascotaInput = findViewById(R.id.inputRaza);
         fechaNacimientoMascotaInput = findViewById(R.id.inputFechaNacimiento);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, especies);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        especieMascotaSpinner.setAdapter(adapter);
 
         agregarMascotaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String nombreMascota = nombreMascotaInput.getText().toString().trim();
-                String especieMascota = especieMascotaInput.getText().toString().trim();
+                String especieMascota = especieMascotaSpinner.getSelectedItem().toString();
                 String razaMascota = razaMascotaInput.getText().toString().trim();
                 String fechaNacimientoMascota = fechaNacimientoMascotaInput.getText().toString().trim();
 
@@ -59,7 +65,7 @@ public class AgregarMascotaActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (especieMascota.isEmpty()) {
+                if (especieMascota.equals(especies[0])) { // Si la especie es la primera opción, no está lleno
                     Toast.makeText(AgregarMascotaActivity.this, "La especie de la mascota es requerida", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -112,7 +118,7 @@ public class AgregarMascotaActivity extends AppCompatActivity {
 
     private void limpiar() {
         nombreMascotaInput.setText("");
-        especieMascotaInput.setText("");
+        especieMascotaSpinner.setSelection(0);
         razaMascotaInput.setText("");
         fechaNacimientoMascotaInput.setText("");
     }

@@ -37,13 +37,11 @@
 
             android:hint="Nombre" />
 
-        <EditText
-            android:id="@+id/inputEspecie"
+        <Spinner
+            android:id="@+id/spinnerEspecie"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:layout_marginTop="4dp"
-            android:ems="10"
-
             android:hint="Especie (perro o gato)" />
 
         <EditText
