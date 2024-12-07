@@ -1,5 +1,7 @@
 package com.example.petcarepro.model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class Mascota implements Serializable {
@@ -65,6 +67,19 @@ public class Mascota implements Serializable {
 
     public String getFechaNacimiento() {
         return fechaNacimiento;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "Mascota{" +
+                "nombre='" + nombre + '\'' +
+                ", especie='" + especie + '\'' +
+                ", raza='" + raza + '\'' +
+                ", fechaNacimiento='" + fechaNacimiento + '\'' +
+                ", idUsuario=" + idUsuario +
+                ", id=" + id +
+                '}';
     }
 
     public void setFechaNacimiento(String fechaNacimiento) {

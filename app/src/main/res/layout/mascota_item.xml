@@ -7,7 +7,7 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/iconoMascotaList"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_weight="0"
@@ -33,15 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="6dp"
-                android:layout_weight="0"
-                android:text="Especie:"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/especieMascotaList"

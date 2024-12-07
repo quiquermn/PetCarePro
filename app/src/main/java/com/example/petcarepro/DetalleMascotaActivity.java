@@ -65,7 +65,8 @@ public class DetalleMascotaActivity extends AppCompatActivity {
                 databaseAdmin.close();
 
                 if (!eliminado) {
-                    Toast.makeText(DetalleMascotaActivity.this, "Error al eliminar la mascota", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetalleMascotaActivity.this, mascota.toString(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(DetalleMascotaActivity.this, "Error al eliminar la mascota", Toast.LENGTH_SHORT).show();
                     return;
                 }
 

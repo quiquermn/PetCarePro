@@ -66,6 +66,13 @@ public class DatosFragment extends Fragment implements AdapterView.OnItemClickLi
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Mascota mascota = (Mascota) parent.getItemAtPosition(position);
+        if (mascota == null) {
+            // Significa que no hay mascotas en la lista
+            Intent intent = new Intent(getActivity(), AgregarMascotaActivity.class);
+            startActivity(intent);
+            return;
+        }
+
         Intent intent = new Intent(getActivity(), DetalleMascotaActivity.class);
 
         intent.putExtra("mascota", mascota); // Añade la mascota al intent

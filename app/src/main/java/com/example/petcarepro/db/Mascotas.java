@@ -2,6 +2,7 @@ package com.example.petcarepro.db;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.petcarepro.model.Mascota;
@@ -48,7 +49,7 @@ public class Mascotas {
             int idUsuario = fila.getInt(5);
 
             Mascota mascota = new Mascota(nombre, especie, raza, fechaNacimiento, idUsuario);
-            mascota.setId(idUsuario);
+            mascota.setId(fila.getInt(0));
 
             lista.add(mascota);
         }
