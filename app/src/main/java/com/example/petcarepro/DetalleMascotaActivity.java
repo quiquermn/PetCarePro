@@ -65,8 +65,7 @@ public class DetalleMascotaActivity extends AppCompatActivity {
                 databaseAdmin.close();
 
                 if (!eliminado) {
-                    Toast.makeText(DetalleMascotaActivity.this, mascota.toString(), Toast.LENGTH_SHORT).show();
-//                    Toast.makeText(DetalleMascotaActivity.this, "Error al eliminar la mascota", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetalleMascotaActivity.this, "Error al eliminar la mascota", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -75,6 +74,12 @@ public class DetalleMascotaActivity extends AppCompatActivity {
             }
         });
 
-
+        Button editarButton = findViewById(R.id.buttonEditar);
+        editarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DetalleMascotaActivity.this, "Editar mascota", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

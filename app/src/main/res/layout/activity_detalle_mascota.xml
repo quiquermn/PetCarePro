@@ -114,7 +114,14 @@
             android:backgroundTint="#FF5656"
             android:text="Eliminar mascota"
             app:cornerRadius="10dp" />
-
+        <Button
+            android:id="@+id/buttonEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="#9A8BCF"
+            android:text="Editar Mascota"
+            app:cornerRadius="10dp" />
         <Button
             android:id="@+id/buttonRegresar"
             android:layout_width="match_parent"
